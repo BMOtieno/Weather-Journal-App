@@ -43,7 +43,7 @@ function addCity(request, response){
 
     newEntry = {
         newDate: request.body.newDate,
-        temp: request.body.temp,
+        temp: request.body.temperature.value,
         content: request.body.content,
         newZipCode: request.body.newZipCode
     }
