@@ -26,29 +26,32 @@ const port = 3000;
 // Spin up the server
 const server = app.listen(port, ()=>{console.log(`Server running on localhost: ${port}`)});
 
-// Callback function to complete GET '/all'
-app.get('/all', getData)
+// Callback function to complete GET 
+app.get('/all', sendData)
 
-function getData(request, response){
+function sendData(request, response){
     response.send(projectData)
-    console.log(projectData)
 }
 
 // Post Route
 const cityData = [];
 
-app.post('/addCity', addCity);
+app.post('/output', addCity)
 
 function addCity(request, response){
 
     newEntry = {
-        newDate: request.body.newDate,
-        temp: request.body.temperature.value,
-        content: request.body.content,
+        date: request.body.date,
+        temp: request.body.temp,
+        content: request.body.feel,
         newZipCode: request.body.newZipCode
     }
+    
     cityData.push(newEntry)
     response.send(cityData)
     console.log(cityData)
 }
+
+
+
   

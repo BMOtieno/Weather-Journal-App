@@ -12,15 +12,16 @@ let apiKey = '&appid=768943ec3925e106a5fb95bd6f650dde';
 document.getElementById('generate').addEventListener('click', performAction);
 
 /* Function called by event listener */
-function performAction(){
+function performAction(e){
     const newZipCode =  document.getElementById('zip').value;
+    const feel = document.getElementById('feelings').value;
     //make an API call
     getZipCode(baseURL,newZipCode, apiKey)
     //after a successful call
     .then(function(data){
       console.log(data)
      //add data to POST request
-     postData('/addCity', {newDate: newDate, temp: data.temp, content: data.content, newZipCode: newZipCode})
+     postData('/output', {date: newDate, temp: data.main.temp, feel: feel, newZipCode: newZipCode})
     })
     .then(
       retrieveData()
@@ -32,7 +33,6 @@ const getZipCode = async (baseURL, zip, key)=>{
     const res = await fetch(baseURL+zip+key)
     try {
       const data = await res.json();
-      console.log(data);
       return data;
     }  catch(error) {
       console.log("error", error);
@@ -43,6 +43,7 @@ const getZipCode = async (baseURL, zip, key)=>{
 
 /* Function to POST data */
 const postData = async (url= '', data = {}) => {
+  console.log(data)
   const response = await fetch(url, {
     method: 'POST',
     credentials: 'same-origin',
@@ -69,9 +70,9 @@ const retrieveData = async () =>{
   const allData = await request.json()
   console.log(allData)
   // Write updated data to DOM elements
-  document.getElementById('date').innerHTML =allData.newDate;
+  document.getElementById('date').innerHTML =allData.date;
   document.getElementById('temp').innerHTML = Math.round(allData.temp)+ 'degrees';
-  document.getElementById('content').innerHTML = allData.content;
+  document.getElementById('content').innerHTML = allData.feel;
   document.getElementById('zip').innerHTML = allData.newZipCode;
   }
   catch(error) {
