@@ -53,6 +53,20 @@ function addCity(request, response){
     console.log(cityData)
 }
 
+/* GITHUB CHEATCODE
+ git remote add origin https://github.com/BMOtieno/Weather-Journal-App.git
+ git branch -M main
+ git push -u origin main
+*/
+
+/*CODE TO INCLUDE package.json TO YOUR PROJECT
+ npm init -y
+ npm i express body-parser cors
+ */
+
+
+
+
 
 
 
