@@ -43,14 +43,18 @@ function addCity(request, response){
     newEntry = {
         date: request.body.date,
         temp: request.body.temp,
-        content: request.body.feel,
-        newZipCode: request.body.newZipCode
+        feel: request.body.feel
     }
     
-    cityData.push(newEntry)
+    projectData=newEntry;
+
+    cityData.push(projectData)
     response.send(cityData)
     console.log(cityData)
 }
+
+
+
 
 
 

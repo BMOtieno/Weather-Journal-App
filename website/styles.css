@@ -16,35 +16,24 @@ body{
     font-family: 'Oswald', sans-serif;
 }
 
-.holder{
-
-}
-
 .entry{
     background: rgba(59, 74, 107, .4);
 }
 
 #entryHolder{
-
-}
-
-#date{
-
-}
-
-#temp{
-
-}
-
-#content{
-
+    color: antiquewhite;
 }
 
 .headline {
-
+    font-size: 30px;
 }
+
+#date, #temp, #content{
+    color: #f0d43a;
+}
+
 .title{
-    
+    font-size: 20px;   
 }
 
 /*  Basic Styling To Override Default For Basic HTML Elements */

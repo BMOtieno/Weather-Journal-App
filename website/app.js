@@ -2,11 +2,11 @@
 
 // Create a new date instance dynamically with JS
 let d = new Date();
-let newDate = d.getMonth()+'.'+ d.getDate()+'.'+ d.getFullYear();
+let newDate = d.getMonth()+1 +'.'+ d.getDate()+'.'+ d.getFullYear();
 
 // Personal API Key for OpenWeatherMap API
 let baseURL = 'https://api.openweathermap.org/data/2.5/weather?zip='
-let apiKey = '&appid=768943ec3925e106a5fb95bd6f650dde';
+const apiKey = '&appid=768943ec3925e106a5fb95bd6f650dde&units=imperial'; //&units=imperial to attain temp in Fahrenheit. ---> &units=metric gets temp in Celsius
 
 // Event listener to add function to existing HTML DOM element
 document.getElementById('generate').addEventListener('click', performAction);
@@ -21,11 +21,12 @@ function performAction(e){
     .then(function(data){
       console.log(data)
      //add data to POST request
-     postData('/output', {date: newDate, temp: data.main.temp, feel: feel, newZipCode: newZipCode})
+     postData('/output', {date: newDate, temp: data.main.temp, feel: feel})
     })
-    .then(
-      retrieveData()
-    )};
+    .then(() => {
+      retrieveData() 
+    })      
+};
 
 /* Function to GET Web API Data*/
 const getZipCode = async (baseURL, zip, key)=>{
@@ -39,7 +40,6 @@ const getZipCode = async (baseURL, zip, key)=>{
       // appropriately handle the error
     }
   }
-
 
 /* Function to POST data */
 const postData = async (url= '', data = {}) => {
@@ -71,11 +71,9 @@ const retrieveData = async () =>{
   console.log(allData)
   // Write updated data to DOM elements
   document.getElementById('date').innerHTML =allData.date;
-  document.getElementById('temp').innerHTML = Math.round(allData.temp)+ 'degrees';
+  document.getElementById('temp').innerHTML = Math.round(allData.temp)+ ' degrees';
   document.getElementById('content').innerHTML = allData.feel;
-  document.getElementById('zip').innerHTML = allData.newZipCode;
-  }
-  catch(error) {
+  }catch(error) {
     console.log("Error: ", error);
     // appropriately handle the error
   }
