@@ -59,7 +59,6 @@ const postData = async (url= '', data = {}) => {
   }
 }
 
-
 /* Function to GET Project Data */
 const retrieveData = async () =>{
   const request = await fetch('/all');
