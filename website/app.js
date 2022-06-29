@@ -1,5 +1,3 @@
-/* Global Variables */
-
 // Create a new date instance dynamically with JS
 let d = new Date();
 let newDate = d.getMonth()+1 +'.'+ d.getDate()+'.'+ d.getFullYear();
@@ -9,14 +7,14 @@ let baseURL = 'https://api.openweathermap.org/data/2.5/weather?zip='
 const apiKey = '&appid=768943ec3925e106a5fb95bd6f650dde&units=imperial'; //&units=imperial to attain temp in Fahrenheit. ---> &units=metric gets temp in Celsius
 
 // Event listener to add function to existing HTML DOM element
-document.getElementById('generate').addEventListener('click', performAction);
+document.getElementById('generate').addEventListener('click', generateData);
 
 /* Function called by event listener */
-function performAction(e){
-    const newZipCode =  document.getElementById('zip').value;
+function generateData(){
+    const zip =  document.getElementById('zip').value;
     const feel = document.getElementById('feelings').value;
     //make an API call
-    getZipCode(baseURL,newZipCode, apiKey)
+    getZipCode(baseURL,zip, apiKey)
     //after a successful call
     .then(function(data){
       console.log(data)
